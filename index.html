@@ -283,10 +283,6 @@
             </div>
             <div class="spacerM"></div>
             <div class="container">
-                <label class="label" for="AssemblyBay">Wire / Sandbags / Beams</label>
-            </div>
-            <div class="spacerM"></div>
-            <div class="container">
                 <label class="label" for="cokeL">Coke (Liquefier)</label>
             </div>
             <div class="spacerM"></div>
@@ -457,6 +453,48 @@ const cSStations = cSTime / PPl.value;
                 	}
             </script>
             <div class="spacerS"></div>
+<!--WIRE OR SANDBAGS-->
+<div class="box">
+  <div class="container">
+      <label class="label" for="ab1">Wire or Sandbags</label>
+      <input placeholder="Enter Salvage" class="input smooth-type" type="number" id="ab1" name="ab1">
+  </div>
+  <button type="button" onclick="calculateab1Time()">Calculate Time</button>
+</div>
+<p id="ab1result">Hours of Wire or Sandbags Queued = </p>
+<p id="ab1Quant">Amount of Wire or Sandbags Queued = </p>
+<script>
+  function calculateab1Time() {
+  var ab1 = document.getElementById('ab1').value;
+var Oq = document.getElementById('OrderQ').value;
+  var ab1Amount = ((ab1) / 25) * 5;
+  var ab1Time = ((ab1) / 3600) / Oq;
+  document.getElementById('ab1result').innerHTML = "Hours of Wire or Sandbags Queued = " + ab1Time.toFixed(2);
+  document.getElementById('ab1Quant').innerHTML = "Amount of Wire or Sandbags Queued = " + ab1Amount.toFixed(2);
+    }
+</script>
+<div class="spacerS"></div>
+<!--METAL BEAMS-->
+<div class="box">
+  <div class="container">
+      <label class="label" for="ab2">Metal Beams</label>
+      <input placeholder="Enter Salvage" class="input smooth-type" type="number" id="ab2" name="ab2">
+  </div>
+  <button type="button" onclick="calculateab2Time()">Calculate Time</button>
+</div>
+<p id="ab2result">Hours of Metal Beams Queued = </p>
+<p id="ab2Quant">Amount of Metal Beams Queued = </p>
+<script>
+  function calculateab2Time() {
+  var ab2 = document.getElementById('ab2').value;
+var Oq = document.getElementById('OrderQ').value;
+  var ab2Amount = ((ab2) / 25);
+  var ab2Time = ((ab2) / 3600) / Oq;
+  document.getElementById('ab2result').innerHTML = "Hours of Metal Beams Queued = " + ab2Time.toFixed(2);
+  document.getElementById('ab2Quant').innerHTML = "Amount of Metal Beams Queued = " + ab2Amount.toFixed(2);
+    }
+</script>
+<div class="spacerS"></div>
 <!--COKE BASIC-->
             <div class="box">
                 <div class="container">
