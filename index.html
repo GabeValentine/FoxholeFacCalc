@@ -527,21 +527,33 @@ var Oq = document.getElementById('OrderQ').value;
 </div>
 <p id="AM1result">Hours of AM1 Queued = </p>
 <p id="AM1Quant">Amount of AM1 Queued = </p>
+<p id="AM1bottleneck">Bottleneck = </p>
 <script>
   function calculateAM1Time() {
   const inputCoke = document.getElementById('inputCoke');
   const inputSalvage3 = document.getElementById('inputSalvage3');
   const AM1Result = document.getElementById('AM1result');
+  const AM1Quant = document.getElementById('AM1Quant');
+  const AM1bottleneck = document.getElementById('AM1bottleneck');
 const Oq = document.getElementById('OrderQ');
   const CokeTime = ((1 / 4500) * inputCoke.value);
   const SalvageTime = ((1 / 900) * inputSalvage3.value);
   const CokeAmount2 = (inputCoke.value / 75);
   const SalvageAmount = (inputSalvage3.value / 15);
   const AM1Time = Math.min(CokeTime, SalvageTime);
-  const AM1Amount = Math.min(CokeAmount2, SalvageAmount);
+  let AM1Amount = Math.min(CokeAmount2, SalvageAmount);
+    let lowestAmountName = "";
+    if (AM1Amount === CokeAmount2 && AM1Amount === SalvageAmount) {
+      lowestAmountName = "Equivalent, Good job :)";
+    } else if (AM1Amount === CokeAmount2) {
+      lowestAmountName = "Coke";
+    } else if (AM1Amount === SalvageAmount) {
+      lowestAmountName = "Salvage";
+    }
 const AM1q = AM1Time / Oq.value;
   AM1Result.textContent = `Hours of AM1 Queued = ${AM1q.toFixed(4)}`;
   AM1Quant.textContent = `Amount of AM1 Queued = ${AM1Amount.toFixed(4)}`;
+  AM1bottleneck.textContent = `Bottleneck = ${lowestAmountName}`;
     }
 </script>
 <div class="spacerS"></div>
@@ -556,21 +568,33 @@ const AM1q = AM1Time / Oq.value;
 </div>
 <p id="AM2result">Hours of AM2 Queued = </p>
 <p id="AM2Quant">Amount of AM1 Queued = </p>
+<p id="AM2bottleneck">Bottleneck = </p>
 <script>
   function calculateAM2Time() {
   const inputPetrol = document.getElementById('inputPetrol');
-  const inputSalvage3 = document.getElementById('inputSalvage4');
+  const inputSalvage4 = document.getElementById('inputSalvage4');
   const AM2Result = document.getElementById('AM2result');
+  const AM2Quant = document.getElementById('AM2Quant');
+  const AM2bottleneck = document.getElementById('AM2bottleneck');
 const Oq = document.getElementById('OrderQ');
   const PetrolTime = (inputPetrol.value / 60);
   const SalvageTime2 = ((1 / 900) * inputSalvage4.value);
-  const PetrolAmount = inputPetrol.value;
+  const PetrolAmount = (inputPetrol.value) * 1;
   const SalvageAmount2 = inputSalvage4.value / 15;
   const AM2Time = Math.min(PetrolTime, SalvageTime2);
-  const AM2Amount = Math.min(PetrolAmount, SalvageAmount2);
+  let AM2Amount = Math.min(SalvageAmount2, PetrolAmount);
+  let AM2lmn = "";
+    if (AM2Amount === SalvageAmount2 && AM2Amount === PetrolAmount) {
+      AM2lmn = "Equivalent, Good job :)";
+    } else if (AM2Amount === PetrolAmount) {
+      AM2lmn = "Petrol";
+    } else if (AM2Amount === SalvageAmount2) {
+      AM2lmn = "Salvage";
+    }
 const AM2q = AM2Time / Oq.value;
   AM2Result.textContent = `Hours of AM2 Queued = ${AM2q.toFixed(4)}`;
   AM2Quant.textContent = `Amount of AM2 Queued = ${AM2Amount.toFixed(4)}`;
+  AM2bottleneck.textContent = `Bottleneck = ${AM2lmn}`;
     }
 </script>
         </div>
@@ -588,21 +612,33 @@ const AM2q = AM2Time / Oq.value;
 </div>
 <p id="PCMresult">Hours of PCM Queued = </p>
 <p id="PCMQuant">Amount of PCM Queued = </p>
+<p id="PCMbottleneck">Bottleneck = </p>
 <script>
   function calculatePCMTime() {
   const inputCmat2 = document.getElementById('inputCMat2');
   const inputComp = document.getElementById('inputComp');
   const PCMResult = document.getElementById('PCMresult');
+  const PCMQuant = document.getElementById('PCMQuant');
+  const PCMbottleneck = document.getElementById('PCMbottleneck');
 const Oq = document.getElementById('OrderQ');
   const CmatTime2 = (inputCmat2.value / 3) / 60;
   const CompTime = (inputComp.value / 20) / 60;
   const CmatAmount3 = (inputCmat2.value / 3);
   const CompAmount1 = (inputComp.value / 20);
   const PCMTime3 = Math.min(CmatTime2, CompTime);
-  const PCMAmount3 = Math.min(CmatAmount3, CompAmount1);
+  let PCMAmount3 = Math.min(CmatAmount3, CompAmount1);
+  let PCMlmn = "";
+    if (PCMAmount3 === CmatAmount3 && PCMAmount3 === CompAmount1) {
+      PCMlmn = "Equivalent, Good job :)";
+    } else if (PCMAmount3 === CompAmount1) {
+      PCMlmn = "Components";
+    } else if (PCMAmount3 === CmatAmount3) {
+      PCMlmn = "Construction Materials";
+    }
 const PCMq = PCMTime3 / Oq.value;
   PCMResult.textContent = `Hours of PCM Queued = ${PCMq.toFixed(4)}`;
   PCMQuant.textContent = `Amount of PCM Queued = ${PCMAmount3.toFixed(4)}`;
+  PCMbottleneck.textContent = `Bottleneck = ${PCMlmn}`;
     }
 </script>
 <div class="spacerS"></div>
@@ -618,24 +654,38 @@ const PCMq = PCMTime3 / Oq.value;
 </div>
 <p id="PCMresult2">Hours of PCM Queued = </p>
 <p id="PCMQuant2">Amount of PCM Queued = </p>
+<p id="PCMbottleneck2">Bottleneck = </p>
 <script>
   function calculatePCMTime2() {
   const inputCmat3 = document.getElementById('inputCMat3');
   const inputComp2 = document.getElementById('inputComp2');
 const inputHOil3 = document.getElementById('inputHOil3');
   const PCMResult2 = document.getElementById('PCMresult2');
+  const PCMQuant2 = document.getElementById('PCMQuant2');
+  const PCMbottleneck2 = document.getElementById('PCMbottleneck2');
 const Oq = document.getElementById('OrderQ');
   const CmatTime3 = (inputCmat3.value / 3) / 60;
   const CompTime2 = (inputComp2.value / 55) / 60;
 const HOilTime3 = (inputHOil3.value * 5) / 60;
-  const CmatAmount4 = (inputCmat3.value);
+  const CmatAmount4 = (inputCmat3.value) * 1;
   const CompAmount2 = (inputComp2.value / 55) * 3;
 const HOilAmount3 = (inputHOil3.value * 5) * 3;
   const PCMTime4 = Math.min(CmatTime3, CompTime2, HOilTime3);
-  const PCMAmount4 = Math.min(CmatAmount4, CompAmount2, HOilAmount3);
+  let PCMAmount4 = Math.min(CmatAmount4, CompAmount2, HOilAmount3);
+  let PCM2lmn = "";
+    if (PCMAmount4 === CmatAmount4 && PCMAmount4 === CompAmount2 && PCMAmount4 === HOilAmount3) {
+      PCM2lmn = "Equivalent, Good job :)";
+    } else if (PCMAmount4 === CompAmount2) {
+      PCM2lmn = "Components";
+    } else if (PCMAmount4 === CmatAmount4) {
+      PCM2lmn = "Construction Materials";
+    } else if (PCMAmount4 === HOilAmount3) {
+      PCM2lmn = "Heavy Oil";
+    }
 const PCMq2 = PCMTime4 / Oq.value;
   PCMResult2.textContent = `Hours of PCM Queued = ${PCMq2.toFixed(4)}`;
   PCMQuant2.textContent = `Amount of PCM Queued = ${PCMAmount4.toFixed(4)}`;
+  PCMbottleneck2.textContent = `Bottleneck = ${PCM2lmn}`;
     }
 </script>
 <div class="spacerS"></div>
@@ -650,21 +700,33 @@ const PCMq2 = PCMTime4 / Oq.value;
             </div>
             <p id="AM3result">Hours of AM3 Queued = </p>
             <p id="AM3Quant">Amount of AM3 Queued = </p>
+            <p id="AM3bottleneck">Bottleneck = </p>
             <script>
                 function calculateAM3Time() {
                 const inputCmat = document.getElementById('inputCmat');
                 const inputSulfur = document.getElementById('inputSulfur');
                 const AM3Result = document.getElementById('AM3result');
+                const AM3Quant = document.getElementById('AM3Quant');
+                const AM3bottleneck = document.getElementById('AM3bottleneck');
 				const Oq = document.getElementById('OrderQ');
                 const CmatTime = (inputCmat.value / 90);
                 const SulfurTime = (inputSulfur.value / 600);
                 const CmatAmount2 = (inputCmat.value / 3);
                 const SulfurAmount = (inputSulfur.value / 20);
                 const AM3Time = Math.min(CmatTime, SulfurTime);
-                const AM3Amount = Math.min(CmatAmount2, SulfurAmount);
+                let AM3Amount = Math.min(CmatAmount2, SulfurAmount);
+                let AM3lmn = "";
+    if (AM3Amount === CmatAmount2 && AM3Amount === SulfurAmount) {
+      AM3lmn = "Equivalent, Good job :)";
+    } else if (AM3Amount === SulfurAmount) {
+      AM3lmn = "Sulfur";
+    } else if (AM3Amount === CmatAmount2) {
+      AM3lmn = "Construction Materials";
+    }
 				const AM3q = AM3Time / Oq.value;
                 AM3Result.textContent = `Hours of AM3 Queued = ${AM3q.toFixed(4)}`;
                 AM3Quant.textContent = `Amount of AM3 Queued = ${AM3Amount.toFixed(4)}`;
+                AM3bottleneck.textContent = `Bottleneck = ${AM3lmn}`;
                 	}
             </script>
             <div class="spacerS"></div>
@@ -679,21 +741,33 @@ const PCMq2 = PCMTime4 / Oq.value;
             </div>
             <p id="AM4result">Hours of AM4 Queued = </p>
             <p id="AM4Quant">Amount of AM4 Queued = </p>
+            <p id="AM4bottleneck">Bottleneck = </p>
             <script>
                 function calculateAM4Time() {
                 const inputHOil = document.getElementById('inputHOil');
                 const inputPCM = document.getElementById('inputPCM');
                 const AM4Result = document.getElementById('AM4result');
+                const AM4Quant = document.getElementById('AM4Quant');
+                const AM4bottleneck = document.getElementById('AM4bottleneck');
 				const Oq = document.getElementById('OrderQ');
                 const HOilTime = (inputHOil.value / 66);    // very elegant that (((x*30)/66)*2)/60 = x/66 which is equal to the cost per cycle, deceptively simple
                 const PCMTime = (inputPCM.value / 30);
                 const HOilAmount = (inputHOil.value * 30) / 66;
-                const PCMAmount = inputPCM.value;
+                const PCMAmount = (inputPCM.value) * 1;
                 const AM4Time = Math.min(HOilTime, PCMTime);
-                const AM4Amount = Math.min(HOilAmount, PCMAmount);
+                let AM4Amount = Math.min(HOilAmount, PCMAmount);
+                let AM4lmn = "";
+    if (AM4Amount === HOilAmount && AM4Amount === PCMAmount) {
+      AM4lmn = "Equivalent, Good job :)";
+    } else if (AM4Amount === HOilAmount) {
+      AM4lmn = "Heavy Oil";
+    } else if (AM4Amount === PCMAmount) {
+      AM4lmn = "Processed Con. Mat.";
+    }
 				const AM4q = AM4Time / Oq.value;
                 AM4Result.textContent = `Hours of AM4 Queued = ${AM4q.toFixed(4)}`;
                 AM4Quant.textContent = `Amount of AM4 Queued = ${AM4Amount.toFixed(4)}`;
+                AM4bottleneck.textContent = `Bottleneck = ${AM4lmn}`;
                 	}
             </script>
         </div>
@@ -713,12 +787,15 @@ const PCMq2 = PCMTime4 / Oq.value;
             </div>
             <p id="SCMresult">Hours of SCM Queued = </p>
             <p id="SCMQuant">Amount of SCM Queued = </p>
+            <p id="SCMbottleneck">Bottleneck = </p>
             <script>
                 function calculateSCMTime2() {
                 const inputPCM2 = document.getElementById('inputPCM2');
                 const inputCoke3 = document.getElementById('inputCoke3');
                 const inputSulfur2 = document.getElementById('inputSulfur2');
                 const inputHOil2 = document.getElementById('inputHOil2');
+                const SCMQuant = document.getElementById('SCMQuant');
+                const SCMbottleneck = document.getElementById('SCMbottleneck');
 				const Oq = document.getElementById('OrderQ');
                 const SCMResult = document.getElementById('SCMresult');
                 const PCMTime2 = ((inputPCM2.value / 3) * 1.5) / 60;
@@ -730,10 +807,23 @@ const PCMq2 = PCMTime4 / Oq.value;
                 const SulfurAmount2 = (inputSulfur2.value / 65);
                 const HOilAmount2 = ((inputHOil2.value * 30) / 35);
                 const SCMTime2 = Math.min(PCMTime2, CokeTime3, SulfurTime2, HOilTime2);
-                const SCMAmount2 = Math.min(PCMAmount2, CokeAmount4, SulfurAmount2, HOilAmount2);
+                let SCMAmount2 = Math.min(PCMAmount2, CokeAmount4, SulfurAmount2, HOilAmount2);
+                let lmn = "";
+    if (SCMAmount2 === PCMAmount2 && SCMAmount2 === CokeAmount4 && SCMAmount2 === SulfurAmount2 && SCMAmount2 === HOilAmount2) {
+      SCMlmn = "Equivalent, Good job :)";
+    } else if (SCMAmount2 === PCMAmount2) {
+      SCMlmn = "Processed Con. Mat.";
+    } else if (SCMAmount2 === CokeAmount4) {
+      SCMlmn = "Coke";
+    } else if (SCMAmount2 === SulfurAmount2) {
+      SCMlmn = "Sulfur";
+    } else if (SCMAmount2 === HOilAmount2) {
+      SCMlmn = "Heavy Oil";
+    }
 				const SCMq = SCMTime2 / Oq.value;
                 SCMResult.textContent = `Hours of SCM Queued = ${SCMq.toFixed(4)}`;
                 SCMQuant.textContent = `Amount of SCM Queued = ${SCMAmount2.toFixed(4)}`;
+                SCMbottleneck.textContent = `Bottleneck = ${SCMlmn}`;
                 	}
             </script>
             <div class="spacerS"></div>
@@ -750,6 +840,7 @@ const PCMq2 = PCMTime4 / Oq.value;
             </div>
             <p id="AM5result">Hours of AM5 Queued = </p>
             <p id="AM5Quant">Amount of AM5 Queued = </p>
+            <p id="AM5bottleneck">Bottleneck = </p>
             <script>
                 function calculateAM5Time() {
                 const inputSCM = document.getElementById('inputSCM');
@@ -757,6 +848,8 @@ const PCMq2 = PCMTime4 / Oq.value;
                 const inputAM1 = document.getElementById('inputAM1');
                 const inputAM2 = document.getElementById('inputAM2');		
                 const AM5Result = document.getElementById('AM5result');
+                const AM5Quant = document.getElementById('AM5Quant');
+                const AM5bottleneck = document.getElementById('AM5bottleneck');
 			        	const Oq = document.getElementById('OrderQ');
                 const SCMTime = (inputSCM.value / 90);
                 const CokeTime2 = (inputCoke2.value / 7350);
@@ -767,10 +860,25 @@ const PCMq2 = PCMTime4 / Oq.value;
                 const AM1Amount2 = (inputAM1.value / 10);
                 const AM2Amount2 = (inputAM2.value / 10);
                 const AM5Time = Math.min(SCMTime, CokeTime2, AM1Time2, AM2Time2);
-                const AM5Amount = Math.min(SCMAmount, CokeAmount3, AM1Amount2, AM2Amount2);
+                let AM5Amount = Math.min(SCMAmount, CokeAmount3, AM1Amount2, AM2Amount2);
+                let AM5lmn = "";
+    if (AM5Amount === SCMAmount && AM5Amount === CokeAmount3 && AM5Amount === AM1Amount2 && AM5Amount === AM2Amount2) {
+      AM5lmn = "Equivalent, Good job :)";
+    } else if (AM5Amount === SCMAmount) {
+      AM5lmn = "Steel Con. Mat.";
+    } else if (AM5Amount === CokeAmount3) {
+      AM5lmn = "Coke";
+    } else if (AM5Amount === AM1Amount2 && AM5Amount === AM2Amount2) {
+      AM5lmn = "Assembly Mat. 1 & 2";
+    } else if (AM5Amount === AM1Amount2) {
+      AM5lmn = "Assembly Mat. 1";
+    } else if (AM5Amount === AM2Amount2) {
+      AM5lmn = "Assembly Mat. 2";
+    }
 			        	const AM5q = AM5Time / Oq.value;
                 AM5Result.textContent = `Hours of AM5 Queued = ${AM5q.toFixed(4)}`;
                 AM5Quant.textContent = `Amount of AM5 Queued = ${AM5Amount.toFixed(4)}`;
+                AM5bottleneck.textContent = `Bottleneck = ${AM5lmn}`;
                 	}
             </script>
   </div>
