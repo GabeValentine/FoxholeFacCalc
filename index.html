@@ -240,7 +240,7 @@
 </head>
 <body>
     <h1>Foxhole Facility Materials Calculators</h1>
-    <h3>Work in progress. Last Updated: April 18, 2025.</h3>
+    <h3>Work in progress. Last Updated: April 21, 2025.</h3>
     <div class="row">
 <!--COLUMN ONE-->
         <div class="column">
@@ -260,7 +260,7 @@
             </div>
 <!--STUFF I WANT TO ADD-->
             <div class="spacerM"></div>
-            <h2>Recipes to be added Soon™</h2>
+            <h2>To be added Soon™</h2>
             <div class="spacerL"></div>
             <div class="container">
               <label class="label" for="OilPower">Oil Power</label>
@@ -300,6 +300,14 @@
             <div class="spacerM"></div>
             <div class="container">
                 <label class="label" for="RareA">Rare Alloys</label>
+            </div>
+            <div class="spacerM"></div>
+            <div class="container">
+                <label class="label" for="Checkbox">∞ Resource Toggles</label>
+            </div>
+            <div class="spacerM"></div>
+            <div class="container">
+                <label class="label" for="Offset">Amount to Equivalency</label>
             </div>
         </div>
 <!--COLUMN TWO-->
@@ -613,6 +621,7 @@ const AM2q = AM2Time / Oq.value;
 <p id="PCMresult">Hours of PCM Queued = </p>
 <p id="PCMQuant">Amount of PCM Queued = </p>
 <p id="PCMbottleneck">Bottleneck = </p>
+<p id="PCMshort">Short = </p>
 <script>
   function calculatePCMTime() {
   const inputCmat2 = document.getElementById('inputCMat2');
@@ -620,6 +629,7 @@ const AM2q = AM2Time / Oq.value;
   const PCMResult = document.getElementById('PCMresult');
   const PCMQuant = document.getElementById('PCMQuant');
   const PCMbottleneck = document.getElementById('PCMbottleneck');
+  const PCMshort = document.getElementById('PCMshort');
 const Oq = document.getElementById('OrderQ');
   const CmatTime2 = (inputCmat2.value / 3) / 60;
   const CompTime = (inputComp.value / 20) / 60;
@@ -630,15 +640,19 @@ const Oq = document.getElementById('OrderQ');
   let PCMlmn = "";
     if (PCMAmount3 === CmatAmount3 && PCMAmount3 === CompAmount1) {
       PCMlmn = "Equivalent, Good job :)";
+      short1 = 0;
     } else if (PCMAmount3 === CompAmount1) {
       PCMlmn = "Components";
+      short1 = (CmatAmount3 * 20) - (inputComp.value);
     } else if (PCMAmount3 === CmatAmount3) {
       PCMlmn = "Construction Materials";
+      short1 = (CompAmount1 * 3) - (inputCmat2.value);
     }
 const PCMq = PCMTime3 / Oq.value;
   PCMResult.textContent = `Hours of PCM Queued = ${PCMq.toFixed(4)}`;
   PCMQuant.textContent = `Amount of PCM Queued = ${PCMAmount3.toFixed(4)}`;
   PCMbottleneck.textContent = `Bottleneck = ${PCMlmn}`;
+  PCMshort.textContent = `Short = ${short1.toFixed(4)}`;
     }
 </script>
 <div class="spacerS"></div>
