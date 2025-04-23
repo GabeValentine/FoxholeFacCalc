@@ -1,0 +1,56 @@
+<script>
+    import { calculateMulti } from '/calculators/calc.js'
+</script>
+
+<div @name="recipe-calc" class="calculator">
+    <div class="box">
+        <div class="container">
+            <label class="label">{ recipe.name }</label>
+            <span name="inputs">
+                <input :for="input in recipe.inputs" @input="calculateTime" name="input_{$index}" placeholder="Enter { input.name }" class="input smooth-type { bottleneck == input.name && 'bottleneck' }" type="number" min="0">
+            </span>
+        </div>
+        <div class="spacerM"></div>
+        <div class="container">
+            <label class="label">Number of queues:</label>
+            <input class="input" @input="calculateTime" name="queues" :value="queues" type="number" min="1">
+        </div>
+    </div>
+    <div class="container">
+        <p :if="duration || bottleneck">Hours of {recipe.output} queued: { duration.toFixed(2) }</p>
+        <p :if="recipe.amount !== 0 && results.length">{amount} {recipe.output} produced.</p>
+        <p :for="result in results">{ result.name }: { result.cycles } cycles ({ result.duration.toFixed(2) } hours). </p>
+        <p :if="bottleneck">Bottleneck: { bottleneck }</p>
+    </div>
+
+    <script>
+        recipe = null
+        queues = 1
+        duration =  0
+        results = []
+        amount = 0
+        bottleneck = ""
+
+        calculateTime() {
+            // See https://github.com/nuejs/nue/issues/558
+            let refs = this.$parent.$refs || this.$refs;
+            let values = this.recipe.inputs.map((_, index) => refs.inputs.children[index].value);
+            let computed = calculateMulti(this.recipe, values, refs.queues.value);
+
+            this.duration = computed.duration;
+            this.results = computed.results;
+            this.amount = computed.amount
+            this.bottleneck = computed.bottleneck?.name || "";
+        }
+    </script>
+</div>
+
+<div @name="recipe-calc-variants">
+    <!-- TODO: render a dropdown selector and instantiate a recipe-calc component based on the recipe in question -->
+    <div name="wrap"></div>
+    <script>
+        mounted() {
+            this.mountChild('recipe-calc', this.$refs.wrap, { recipe: this.recipes[0] });
+        }
+    </script>
+</div>

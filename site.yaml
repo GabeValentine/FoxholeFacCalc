@@ -1,0 +1,152 @@
+globals: ["@global"]
+libs: ["@lib", "calculators"]
+inline_css: true
+
+title_template: "[PSG] Foxhole Facility Mat Calc"
+author: "Gabe Valentine"
+last_updated: "April 21, 2025"
+# favicon:
+# og: # Social embed image
+# origin: https://.../
+
+recipes.diesel-pwr:
+  name: Diesel Power
+  cycle: 45
+  output: Power
+  amount: 0
+  inputs:
+    - name: Diesel (Cans)
+      amount: 0.25
+
+recipes.petrol-pwr:
+  name: Petrol Power
+  cycle: 90
+  output: Power
+  amount: 0
+  inputs:
+    - name: Petrol (Cans)
+      amount: 1
+
+recipes.coal-pwr:
+  name: Coal Power
+  cycle: 90
+  amount: 0
+  output: Power
+  inputs:
+    - name: Coal
+      amount: 60
+
+recipes.coal-pwr-station:
+  name: Coal (Power Station)
+  cycle: 90
+  amount: 0
+  output: Power
+  inputs:
+    - name: Coal
+      amount: 30
+    - name: Water (Cans)
+      amount: 0.02
+
+recipes.oil-pwr-station:
+  name: Oil (Power Station)
+  cycle: 90
+  amount: 0
+  output: Power
+  inputs:
+    - name: Oil (Cans)
+      amount: 1
+
+recipes.coke-pwr-station:
+  name: Coke (Sulfuric Reactor)
+  cycle: 120
+  amount: 0
+  output: Power
+  inputs:
+    - name: Coke
+      amount: 30
+    - name: Water (Cans)
+      amount: 0.02
+
+recipes.hoil-pwr-station:
+  name: Heavy Oil (Sulfuric Reactor)
+  cycle: 120
+  amount: 0
+  output: Power
+  inputs:
+    - name: Heavy Oil (Cans)
+      amount: 1.6666667
+
+recipes.am1:
+  name: Assembly Materials 1
+  cycle: 60
+  output: "AMat. I"
+  inputs:
+    - name: Salvage
+      amount: 15
+    - name: Coke
+      amount: 75
+
+recipes.am2:
+  name: Assembly Materials 2
+  cycle: 60
+  output: "AMat. II"
+  inputs:
+    - name: Salvage
+      amount: 15
+    - name: Petrol (Cans)
+      amount: 1
+
+recipes.am3:
+  name: Assembly Materials 3
+  cycle: 120
+  output: "AMat. III"
+  inputs:
+    - name: Construction Materials
+      amount: 3
+    - name: Sulfur
+      amount: 20
+
+recipes.am4:
+  name: Assembly Materials 4
+  cycle: 120
+  output: "AMat. IV"
+  inputs:
+    - name: Processed Construction Materials (PCM)
+      amount: 1
+    - name: Heavy Oil (Cans)
+      amount: 2.2
+
+recipes.am5:
+  name: Assembly Materials 5
+  cycle: 120
+  output: "AMat. V"
+  inputs:
+
+recipes.scm:
+- name: Steel (Sulfur + Heavy Oil)
+  output: "SCM"
+  cycle: 90
+  amount: 1
+  inputs:
+    - name: Processed Construction Materials (PCM)
+      amount: 3
+    - name: Coke
+      amount: 200
+    - name: Sulfur
+      amount: 65
+    - name: Heavy Oil
+      amount: 1.060606061
+- name: 3x Steel (Enriched Oil + Water)
+  output: "SCM"
+  cycle: 90
+  amount: 3
+  inputs:
+    - name: Processed Construction Materials (PCM)
+      amount: 9
+    - name: Coke
+      amount: 375
+    - name: Enriched Oil (Cans)
+      amount: 10
+    - name: Water (Cans)
+      amount: 10
+

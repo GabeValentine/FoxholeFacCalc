@@ -1,0 +1,176 @@
+:root {
+    --accent: #4a90e2;
+    --warning: #954c22;
+
+    --accent-pulse: var(--accent);
+}
+
+body {
+    background-color: #1f2b3a;
+}
+p {
+}
+
+.row {
+    flex: 100%;
+    display: flex;
+    margin-top: 0px;
+    margin-right: 4%;
+    margin-left: 4%;
+}
+.column {
+    flex: 25%;
+    display: block;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0px;
+}
+.column-last {
+    flex: 25%;
+    display: block;
+    margin-left: 10px;
+    margin-right: 50px;
+    margin-top: 0px;
+}
+.box {
+    margin-top: 50px;
+}
+.container {
+    position: relative;
+    width: 80%;
+    min-width: 250px;
+    font-family: monospace;
+    padding-bottom: 24px;
+}
+.input {
+    width: 75%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #000;
+    background-color: #fff;
+    border: 4px solid #000;
+    position: relative;
+    overflow: hidden;
+    border-radius: 0;
+    outline: none;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 5px 5px 0 #000, 10px 10px 0 var(--accent);
+}
+.input.bottleneck {
+    --accent-pulse: var(--warning);
+    animation: focus-pulse 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+}
+.input:focus {
+    animation: focus-pulse 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite,
+    glitch 0.3s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+}
+.input:focus::after {
+    content: "";
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: white;
+    z-index: -1;
+}
+.input:focus::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    z-index: -2;
+    clip-path: inset(0 100% 0 0);
+    animation: glitch-slice 4s steps(2, end) infinite;
+}
+label {
+    position: absolute;
+    display: inline-block;
+    left: -3px;
+    top: -40px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #dddddd;
+    background-color: #000000;
+    padding: 5px 10px;
+    transform: rotate(-1deg);
+    z-index: 1;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+.input:focus + .label {
+    transform: rotate(0deg) scale(1.05);
+    background-color: #4a90e2;
+}
+.smooth-type {
+    position: relative;
+    overflow: hidden;
+}
+.smooth-type::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(90deg, #fff 0%, rgba(255, 255, 255, 0) 100%);
+    z-index: 1;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.smooth-type:focus::before {
+    opacity: 1;
+    animation: type-gradient 2s linear infinite;
+}
+.input::placeholder {
+    color: #888;
+    transition: color 0.3s ease;
+}
+.input:focus::placeholder {
+    color: transparent;
+}
+.input:focus {
+    animation: focus-pulse 4s cubic-bezier(0.25, 0.8, 0.25, 1) infinite;
+}
+h1 {
+    margin-bottom: 0px;
+    margin-left: 10px;
+    color: #dddddd;
+}
+h2 {
+    margin-top: 0px;
+    color: #dddddd;
+}
+h3 {
+    margin-left: 10px;
+    color: #dddddd;
+}
+p {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    color: #dddddd;
+    font-size: 16px;
+    font-weight: 600;
+    font-family: sans-serif;
+}
+a {
+    color: #4a90e2;
+}
+a:hover{
+    color: #3768a0;
+}
+label {
+    color: #dddddd;
+}
+.spacerL {
+    padding-bottom: 60px;
+}
+.spacerM {
+    padding-bottom: 30px;
+}
+.spacerS {
+    padding-bottom: 15px;
+}
